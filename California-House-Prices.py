@@ -49,7 +49,7 @@ import matplotlib.pyplot as plt
 # Revealed that housing_median_age and median_house_value were capped.
 # Revealed that many histograms are right skewed
 housing_full.hist(bins=200, figsize=(12, 8))
-plt.show()
+# plt.show()
 
 import numpy as np
 # Function to randomly shuffle the dataset, split the dataset into train and test sets, using a random number generator 'rng' for reproducability.
@@ -93,7 +93,7 @@ cat_counts = housing_full["income_cat"].value_counts().sort_index()
 cat_counts.plot.bar(rot=0, grid=True)
 plt.xlabel("Income category")
 plt.ylabel("Number of districts")
-plt.show()
+# plt.show()
 
 
 from sklearn.model_selection import StratifiedShuffleSplit
@@ -105,4 +105,42 @@ for train_index, test_index in splitter.split(housing_full, housing_full["income
     strat_splits.append([strat_test_set_n, strat_test_set_n])
     
 
-strat_train_set, strat_test_set = strat_splits[0]
+# strat_train_set, strat_test_set = strat_splits[0]
+
+# Get a single split using the train_test_split function with the stratify argument
+start_train_set, strat_test_set = train_test_split(housing_full, test_size=0.2, stratify=housing_full["income_cat"], random_state=42)
+
+print(strat_test_set["income_cat"].value_counts() / len(strat_test_set))
+
+
+
+## Code to compares income category proportions in full dataset, stratified sample, random sample. Showing stratified error percentage and random error percentage
+# def income_cat_proportions(data):
+#     return data["income_cat"].value_counts() / len(data)
+
+
+# # Train–test split
+# train_set, test_set = train_test_split(
+#     housing_full, test_size=0.2, random_state=42
+# )
+
+# # Compare category proportions
+# compare_props = pd.DataFrame({
+#     "Overall %": income_cat_proportions(housing_full),
+#     "Stratified %": income_cat_proportions(strat_test_set),
+#     "Random %": income_cat_proportions(test_set)
+# }).sort_index()
+
+# compare_props.index.name = "Income Category"
+
+# # Compute proportional errors
+# compare_props["Strat. Error %"] = (
+#     compare_props["Stratified %"] / compare_props["Overall %"] - 1
+# )
+# compare_props["Rand. Error %"] = (
+#     compare_props["Random %"] / compare_props["Overall %"] - 1
+# )
+
+# # Display results as percentages
+# print((compare_props * 100).round(2))
+
