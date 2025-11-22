@@ -42,8 +42,16 @@ scatter_matrix(housing[attributes], figsize=(12,8))
 # Less obvious straight lines at 450,000 and around 350,000, possibly around 280,000, and maybe a few more below that
 housing.plot(kind="scatter", x="median_income", y="median_house_value",
              alpha = 0.1, grid=True)
-plt.show()
 
 
 
+# Creates new attribute rooms_per_house reflecting the average rooms per household
+housing["rooms_per_house"]= housing["total_rooms"] / housing["households"]
+# Creates new attribute bedrooms_ratio reflecting what fraction of all rooms are bedrooms
+housing["bedrooms_ratio"] = housing["total_bedrooms"] / housing["total_rooms"]
+# Creates new attribute people_per_house reflecting how many people on average live in each household
+housing["people_per_house"] = housing["population"] / housing["households"]
+
+corr_matrix = housing.corr(numeric_only=True)
+print(corr_matrix["median_house_value"].sort_values(ascending=False))
 
