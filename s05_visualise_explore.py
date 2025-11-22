@@ -30,5 +30,20 @@ corr_matrix = housing.corr(numeric_only=True)
 print(corr_matrix["median_house_value"].sort_values(ascending=False))
 
 
+# Scatter plot - plots every numerical attribute against every other numerical attribute
+# Attributes chosen include top 4 attributes from correlation matrix
 from pandas.plotting import scatter_matrix
+attributes = ["median_house_value", "median_income", "total_rooms", "housing_median_age"]
+scatter_matrix(housing[attributes], figsize=(12,8))
+
+
+# Median income versus median house value scatter plot
+# Clearly shows the price cap at 500,000
+# Less obvious straight lines at 450,000 and around 350,000, possibly around 280,000, and maybe a few more below that
+housing.plot(kind="scatter", x="median_income", y="median_house_value",
+             alpha = 0.1, grid=True)
+plt.show()
+
+
+
 
