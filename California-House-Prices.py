@@ -1,3 +1,7 @@
+### File used during the beginning process of this project. Is no longer in use, as it has been split into organised Python files
+### based on the role of the code. New organised files can be found in files following this naming format:
+### s<N: numbered stage in the project>_<descriptive name of file's role>
+
 import sys
 
 # Assures Python 3.10 or above

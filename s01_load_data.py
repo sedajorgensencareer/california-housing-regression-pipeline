@@ -13,7 +13,7 @@ import pandas as pd
 import tarfile
 import urllib.request
 
-# Function for loading housing data
+# Function for loading housing data into DataFrame
 def load_housing_data() -> pd.DataFrame:
     # Looks for datasets/housing.tgz
     tarball_path = Path("datasets/housing.tgz")
@@ -26,7 +26,7 @@ def load_housing_data() -> pd.DataFrame:
             housing_tarball.extractall(path="datasets", filter="data")
     return pd.read_csv(Path("datasets/housing/housing.csv"))
 
-
+# Function to add income categories to DataFrame
 def add_income_cat(housing: pd.DataFrame) -> pd.DataFrame:
     """Return a copy with an income_cat column added."""
     housing = housing.copy()
