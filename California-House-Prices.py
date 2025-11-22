@@ -13,6 +13,7 @@ import pandas as pd
 import tarfile
 import urllib.request
 
+# Function for loading housing data
 def load_housing_data():
     # Looks for datasets/housing.tgz
     tarball_path = Path("datasets/housing.tgz")
@@ -26,9 +27,6 @@ def load_housing_data():
     return pd.read_csv(Path("datasets/housing/housing.csv"))
 
 housing_full = load_housing_data()
-
-# Output first five rows of DataFrame, showing data structure.
-print(housing_full.head())
 
 # Output a quick description of data 
 # Output shows 20433 values for total_bedroms, highlighting that 207 districts are missing this feature.
