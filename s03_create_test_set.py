@@ -8,8 +8,8 @@ from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 housing_full = load_housing_data()
 train_set, test_set = train_test_split(housing_full, test_size=0.2, random_state=42)
 
-print(len(train_set), len(test_set))
-print(test_set["total_bedrooms"].isnull().sum())
+# print(len(train_set), len(test_set))
+# print(test_set["total_bedrooms"].isnull().sum())
 
 
 def create_stratified_test_set(housing_full: pd.DataFrame):
