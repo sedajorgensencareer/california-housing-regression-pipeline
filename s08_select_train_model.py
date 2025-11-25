@@ -96,3 +96,27 @@ full_pipeline = Pipeline([
 
 from sklearn.model_selection import RandomizedSearchCV
 from scipy.stats import randint
+
+param_distribs = {
+            'preprocessing__geo__n_clusters': randint(low=3, high=50),
+            'random_forest__max_features': randint(low=2, high=20),
+                }
+
+rnd_search = RandomizedSearchCV(full_pipeline, 
+                                param_distributions=param_distribs, 
+                                n_iter=10,
+                                cv=3,
+                                scoring="neg_root_mean_squared_error",
+                                random_state=42)
+
+rnd_search.fit(housing, housing_labels)
+
+cv_res = pd.DataFrame(rnd_search.cv_results_)
+cv_res.sort_values(by="mean_test_score", ascending=False, inplace=True)
+cv_res = cv_res[["param_preprocessing__geo__n_clusters",
+                 "param_random_forest__max_features", "split0_test_score",
+                 "split1_test_score", "split2_test_score", "mean_test_score"]]
+score_cols = ["split0", "split1", "split2", "mean_test_rmse"]
+cv_res.columns = ["n_clusters", "max_features"] + score_cols
+cv_res[score_cols] = -cv_res[score_cols].round().astype(np.int64)
+print(cv_res.head())
