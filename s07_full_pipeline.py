@@ -2,10 +2,12 @@ import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.cluster import KMeans
 from sklearn.compose import ColumnTransformer, make_column_selector
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.feature_selection import SelectFromModel
 from sklearn.impute import SimpleImputer
 from s01_load_data import load_housing_data, add_income_cat
 from s03_create_test_set import create_stratified_test_set
-from sklearn.pipeline import FunctionTransformer, make_pipeline
+from sklearn.pipeline import FunctionTransformer, Pipeline, make_pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.metrics.pairwise import rbf_kernel
 
@@ -82,6 +84,21 @@ preprocessing = ColumnTransformer([
     remainder=default_num_pipeline                            
                                   )
 
+
+
+
+full_pipeline = Pipeline([
+     ("preprocessing", preprocessing),
+     ("feature_selection", SelectFromModel(
+         RandomForestRegressor(
+             n_estimators=100,
+             random_state=42,
+             n_jobs=-1
+         )
+         
+     )),
+     ("random_forest", RandomForestRegressor(random_state=42)),
+ ])
 
 # strat_train_set, strat_test_set = create_stratified_test_set(load_housing_data())
 # housing = strat_train_set.drop("median_house_value", axis=1)
