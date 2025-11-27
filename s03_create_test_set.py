@@ -20,5 +20,8 @@ def create_stratified_test_set(housing_full: pd.DataFrame):
 
 
     strat_train_set, strat_test_set = train_test_split(housing_full, test_size=0.2, stratify=housing_full["income_cat"], random_state=42)
+    for set_ in (strat_train_set, strat_test_set):
+        if "income_cat" in set_.columns:
+            set_.drop("income_cat", axis=1, inplace=True)
     return strat_train_set, strat_test_set
     #print(strat_test_set["income_cat"].value_counts() / len(strat_test_set))
