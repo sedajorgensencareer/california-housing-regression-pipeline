@@ -15,6 +15,7 @@ train_set, test_set = train_test_split(housing_full, test_size=0.2, random_state
 def create_stratified_test_set(housing_full: pd.DataFrame):
     # Create income attribute with five income categories
     housing_full = add_income_cat(housing_full)
+    housing_full = housing_full[housing_full["median_house_value"] <= 500000]
     #housing_full["income_cat"].value_counts().sort_index().plot.bar()
     
 
