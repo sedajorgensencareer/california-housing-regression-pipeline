@@ -1,3 +1,6 @@
+"""Generate exploratory visualisations and simple feature engineering to understand spatial patterns, correlations, and feature distributions in the training set."""
+
+
 import matplotlib.pyplot as plt
 from s01_load_data import load_housing_data, add_income_cat
 from s03_create_test_set import create_stratified_test_set

@@ -1,3 +1,6 @@
+"""Experiment with preprocessing techniques for the California housing data, including imputation, scaling, encoding, feature engineering, and prototype pipelines for numerical and categorical features."""
+
+
 from matplotlib import pyplot as plt
 from s01_load_data import load_housing_data, add_income_cat
 from s03_create_test_set import create_stratified_test_set

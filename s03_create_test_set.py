@@ -1,3 +1,6 @@
+"""Create a stratified train/test split based on income categories to preserve distribution representativeness."""
+
+
 from s01_load_data import load_housing_data, add_income_cat
 import numpy as np
 import pandas as pd

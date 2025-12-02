@@ -1,3 +1,5 @@
+"""Load the California Housing dataset from local files or remote source and return it as a DataFrame."""
+
 import sys
 
 # Assures Python 3.10 or above

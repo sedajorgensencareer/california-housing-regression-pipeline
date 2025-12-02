@@ -1,6 +1,8 @@
 from s01_load_data import load_housing_data
 import matplotlib.pyplot as plt
 
+"""Explore and summarize the raw California Housing dataset with basic info, statistics, and visual inspection."""
+
 housing_full = load_housing_data()
 
 

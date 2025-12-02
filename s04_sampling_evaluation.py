@@ -1,3 +1,6 @@
+"""Evaluate the effectiveness of the stratified sampling by comparing income category proportions across splits."""
+
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from s01_load_data import load_housing_data, add_income_cat

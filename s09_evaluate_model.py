@@ -1,3 +1,5 @@
+"""Evaluate the final model with cross-validation, segmented RMSE, error analysis, and diagnostic plots."""
+
 from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
@@ -63,7 +65,7 @@ nrmse_higher_income = normalized_rmse(y_train[higher_income_mask], val_predictio
 nrmse_urban = normalized_rmse(y_train[urban], val_predictions[urban])
 nrmse_rural = normalized_rmse(y_train[rural], val_predictions[rural])
 print("Normalised root mean squared error lower income: ", nrmse_lower_income)
-print("Normalised root mean squared error lower income: ", nrmse_higher_income)
+print("Normalised root mean squared error higher income: ", nrmse_higher_income)
 print("Normalised root mean squared error urban: ", nrmse_urban)
 print("Normalised root mean squared error rural: ", nrmse_rural)
 
@@ -79,4 +81,15 @@ worst["predicted"] = val_pred_series.loc[worst_indexes]
 print(worst)
 
 
+
+
+
+plt.figure(figsize=(10,6))
+plt.hexbin(y_train, val_predictions, gridsize=50, cmap="Blues", mincnt=1)
+plt.plot([0, 500000], [0, 500000], color="red", linewidth=2)
+plt.xlabel("True")
+plt.ylabel("Predicted")
+plt.title("Hexbin: Predicted vs True (CV)")
+plt.colorbar(label="count")
+plt.show()
 
