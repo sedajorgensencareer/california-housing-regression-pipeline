@@ -23,6 +23,6 @@ Given census-style features (median income, housing age, rooms, population, lati
 - **Final test RMSE**: ~40,850
 - **95% CI for RMSE:** 38,903 – 43,236 (bootstrap)
 
-These results are in the expected “good” range for this dataset and match the book’s benchmarks, showing the pipeline generalises well without overfitting.
+These results are in the expected “good” range for this dataset and match the book’s (Hands-On Machine Learning with Scikit Learn and PyTorch) benchmarks, showing the pipeline generalises well without overfitting.
 
 
